@@ -9,7 +9,7 @@ class CreateCategoryRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -17,13 +17,15 @@ class CreateCategoryRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'category_name' => 'required|string|max:100',
+            'category_name'=> 'required|string|max:120',
             'active' => 'required|boolean'
         ];
     }
 }
+
+

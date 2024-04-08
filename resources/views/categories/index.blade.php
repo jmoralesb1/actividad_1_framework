@@ -1,34 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3>Lista de categorias</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Categoria</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $category)
+    <div class="container">
+        <h5>Lista de categorias</h5>
+        <a href="{{ route('categories.create') }}" class="btn  btn-primary">Crear publicación</a>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{$category->id}}</td>
-                    <td>{{$category->category_name}}</td>
-                    <td>
-                        @if ($category->activa)
-                            activa
-                        @else
-                            inactiva
-                        @endif
-                    </td>
-                    <td>
-                        <a class="btn btn-primary">Editar</a>
-                        <a class="btn btn-primary">Eliminar</a>
-                    </td>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Contenido</th>
+                    <th>Acciones</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endsection
+            </thead>
+            <tbody>
+                @foreach($categories as $categorie)
+                    <tr>
+                        <td>{{ $categorie->id }}</td>
+                        <td>{{ $categorie->category_name }}</td>
+                        <td>{{ $categorie->active }}</td>
+                        <td>
+                            <a href="{{ route('posts.show', $categorie->id) }}" class="btn btn-primary">Ver</a>
+                            <a href="{{ route('posts.edit', $categorie->id) }}" class="btn btn-primary">Editar</a>
+                            <form action="{{ route('posts.destroy', $categorie->id) }}"
+
+
+                            method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </tb>
+                    </tr>
+                @endforeach
+            </tbody>
+        </div>
+    @endsection
