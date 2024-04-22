@@ -32,8 +32,8 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-        post::create($request->validated());
-        return redirect()->route ('posts.index')->with('success','Post created successfully') ;
+        Post::create($request->validated());
+        return redirect()->route ('posts.index')->with('success','Post created successfully');
     }
 
     /**
@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view ('posts.show', compact('post'));
+    return view ('posts.show',compact('post'));
     }
 
     /**
@@ -75,7 +75,7 @@ class PostController extends Controller
 
     }
 
-    /**
+/**
      * Remove the specified resource from storage.
      */
     public function destroy(Post $post)
